@@ -1,0 +1,14 @@
+body {
+    padding: 15px;
+    display: inline-block;
+}
+.add_book {
+    display: inline-block;
+}
+button {
+    display: block;
+}
+table {
+    display: inline-block;
+    vertical-align: top;
+}

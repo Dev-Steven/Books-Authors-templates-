@@ -1,0 +1,22 @@
+Queries
+
+>>> change = Book.objects.get(id=1)
+>>> change.title = "C#"
+>>> change.save()
+>>> change.title
+
+>>> fourth_author = Author.objects.get(id=4)
+>>> first_book.authors.add(fourth_author)
+>>> second_book.authors.add(fourth_author)
+>>> third_book.authors.add(fourth_author)
+>>> fourth_book.authors.add(fourth_author)
+>>> fifth_book = Book.objects.get(id=5)
+>>> fifth_book.authors.add(fourth_author)
+
+>>> second_book = Book.objects.get(id=2)
+>>> second_book.authors.add(fifth_author)
+>>> third_author.book.all()
+
+>>> fifth_book = Book.objects.get(id=5)
+>>> fifth_book.authors.add(fourth_author)
+>>> fifth_book.authors.all()

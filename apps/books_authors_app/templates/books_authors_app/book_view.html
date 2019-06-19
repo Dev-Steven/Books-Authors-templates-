@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Books & Authors</title>
+</head>
+<body>
+    <h1>{{ book.title }}</h1>
+    <h3>ID: {{book.id}}</h3>
+    <h3>Description:</h3>
+    <p>{{ book.desc }}</p>
+    <h3>Authors:</h3>
+    <ul>
+        {% for author in book_authors %}
+            <li>{{ author.first_name }} {{ author.last_name }}</li>
+        {% endfor %}
+    </ul>
+    <form action="/author_to_book" method="post">
+    {% csrf_token %}
+    <select name="a_id">
+        {% for author in all_authors %}
+        <option value="{{author.id}}">{{ author.first_name }} {{ author.last_name }}</option>
+        {% endfor %}
+    </select>
+        <button type="submit">Add</button>
+        <input name="b_id" type="hidden" value="{{ book.id }}">
+    </form>
+</body>
+</html>

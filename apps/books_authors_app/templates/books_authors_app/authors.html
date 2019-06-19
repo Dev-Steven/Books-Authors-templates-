@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'books_authors_app/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="add_book">
+            <h1>Add an Author</h1>
+            <form action="/add_author" method="post">
+                {% csrf_token %}
+                <h3>First Name: </h3>
+                <input name="fn" type="text">
+                <h3>Last Name: </h3>
+                <input name="ln" type="text">
+                <h3>Notes</h3>
+                <textarea name="notes" rows="4" cols="30"></textarea>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+        <table class="book_table">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Action</th>
+            </tr>
+            {% for author in all_authors %}
+            <tr>
+                <td>{{ author.id }}</td>
+                <td>{{ author.first_name }} {{ author.last_name }}</td>
+                <td><a href="/author_dets/{{ author.id }}">View</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+</body>
+</html>

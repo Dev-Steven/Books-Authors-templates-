@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Books and Authors</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'books_authors_app/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="add_book">
+        <h1>Add a Book</h1>
+        <form action="/add_book" method="post">
+            {% csrf_token %}
+            <h3>Title: </h3>
+            <input name="title" type="text">
+            <h3>Description</h3>
+            <textarea name="desc" rows="4" cols="30"></textarea>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+    <table class="book_table">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Action</th>
+        </tr>
+        {% for book in all_books %}
+        <tr>
+            <td>{{ book.id }}</td>
+            <td>{{ book.title }}</td>
+            <td><a href="/book_dets/{{book.id}}">View</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
